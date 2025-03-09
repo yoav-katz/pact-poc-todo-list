@@ -1,0 +1,22 @@
+.navbar{
+    background-color: rgb(25, 26, 28);
+    width: 20vw;
+    min-height:30vh;
+    margin-top: 1vh;
+    border-radius: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 20px;
+
+}
+
+.menu-items:hover{
+    color: lightgray;
+}
+
+
+
+.logo{
+    font-size: 150%;
+    color: aliceblue;
+    padding-left: 10%;
+}
