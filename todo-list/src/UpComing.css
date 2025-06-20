@@ -1,68 +1,95 @@
-.upComing{
-    background-color: rgb(25, 26, 28);
-    width: 20vw;
-    height: 49vh;
-    margin-top: 5vh;
-    border-radius: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-top: 20px;
-
+.upComing {
+  background: linear-gradient(135deg, rgb(24, 28, 35), rgb(34, 40, 50));
+  width: 20vw;
+  max-width: 90vw; /* Prevents overflow on small screens */
+  min-width: 100px; /* Ensures readability */
+  height: 54vh;
+  min-height: 30px;
+  margin-top: 3vh;
+  border-radius: 20px;
+  font-family: sans-serif;
+  font-weight: lighter;
+  padding-top: 20px;
+  border: 1px solid rgb(46, 53, 66);
+  box-sizing: border-box;
 }
 
-.folderTopWrapper{
-    display: inline-flex;
-    align-content: space-between;
-    
+.folderTopWrapper {
+  display: flex; /* inline-flex isn't necessary unless you need it inline */
+  justify-content: space-between;
+  width: 85%;
 }
 
-.listwrapper{
-    display: flex;
-    justify-content: center;
+.listwrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.deleteFolderButton{
-    margin-left: auto;
+.deleteFolderButton {
+  margin-inline-start: auto; /* logical property: left in LTR, right in RTL */
 }
 
-.addFolder{
-    margin-top: 5%;
-    margin-left: 4vw;
+.addFolder {
+  margin-inline-start: 3vw;
+  align-self: start;
+  margin-top: -2%;
+  cursor: pointer;
 }
 
-.items{
-    display: flex;
-    border: 2px solid rgb(90, 90, 90);
-    color: white;
-    margin-bottom: 5px;
-}
-.addFolder:hover{
-    color: lightgray;
+.addFolder:hover {
+  color: lightgray;
 }
 
-.items:hover{
-    border-color: rgb(102, 102, 102);
+.items {
+  display: flex;
+  border: 1px solid rgb(46, 53, 66);
+  transition: border-color 0.3s ease;
+  color: white;
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
 }
 
-.menu-items{
-    color: white;
-    padding-left: 10%;
-    font-size: larger;
-    width: 10vw;
+.items:hover {
+  border-color: rgb(46, 53, 66);
+  transition: border-color 0.3s ease;
 }
 
-.menu-items-wrapper{
-    display: block;
-    height: 20vh;
-    background-color: rgb(25, 26, 28);
-    margin-top: 5%;
-    align-content: space-evenly;
+.menu-items {
+  color: white;
+  align-items: center;
+  margin: 0;
+  width: 18vw;
+  height: 2rem;
+  padding: 3px;
+  max-width: 80vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
+.menu-items-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  align-items: start;
+  padding: 5px; 
+  border-radius: 10px;
+  box-sizing: border-box;
+}
 
-
-.logo1{
-    font-size:20px;
-    color: white;
-    margin-left: 10%;
-    padding-bottom: 10px;
+.logo1 {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+  margin-inline-start: 10%;
+  padding-bottom: 10px;
+  min-width: 60%;
+  text-align: center;
 }

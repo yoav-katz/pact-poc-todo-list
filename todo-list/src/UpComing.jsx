@@ -18,8 +18,8 @@ export const UpComing = ({addFolder, folders, setFolders, openDialog, showCurren
     <div className='upComing'>
       <div className='folderTopWrapper'>
       <small className='logo1' ><b>Task Folders </b></small>
-      <IconButton>
-      <AddCircleOutlineIcon className='addFolder' onClick={() => openDialog("addFolder", { folderText: "" })} sx={{ color: 'white', alignContent: "start"}}/>
+      <IconButton className='blah'sx={{ justifyContent: "center", alignContent: "center", padding: "0px", marginLeft: "10px" }} >
+      <AddCircleOutlineIcon className='addFolder' onClick={() => openDialog("addFolder", { folderText: "" })} sx={{ color: 'white', alignContent: "center", justifyContent: "center" }}/>
         </IconButton>
       </div>
             
@@ -31,14 +31,15 @@ export const UpComing = ({addFolder, folders, setFolders, openDialog, showCurren
                       key={folder.id}  
                       onClick={() => showCurrentList(folder.folderText)} 
                       sx={{ height: '7vh',
-                            borderRadius: '10px'}}>
+                            borderRadius: '5px',
+                            width: '100%',}}>
                         
               <div>{folder.folderText}</div>
               
               <div className='deleteFolderButton'>
 
 
-                <IconButton  aria-label="delete" onClick={() => openDialog("deleteFolder", { id: folder.id })} sx={{ color: 'lightgrey' }}>
+                <IconButton  aria-label="delete" onClick={() => openDialog("deleteFolder", { id: folder.id })} sx={{ color: 'lightgrey', justifyContent: "center", alignContent: "end", padding: "0px" }}>
                   <Tooltip title="Delete Folder" arrow placement="top">
                     <DeleteIcon />
                   </Tooltip>

@@ -1,36 +1,41 @@
 import React from 'react';
 import './NavBar.css';
+import { colors, Divider } from '@mui/material';
+import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
 
 export const NavBar = ({ tasks, favorites, toggleFavorites, showAllTasks, setTitle, handleFolderClick }) => {
   return (
     <div className='navbar'>
-      <div className='logo-wrapper'>
-        <small className='logo'><b>To-Do List</b></small>
+      <div className='logo-wrapper' style={{ display: 'flex', justifyContent: 'start' }}>
+        <small className='logo'><b>Check<small className="halfLogo" >List</small></b></small>
       </div>
-      <div className='menu-items-wrapper'>
+      
+      <div className='menu-items-wrapper' style={{ color: 'white', fontSize: '14px', width: '37rem', textAlign: 'left', alignItems: 'start' }}>
+
         <small 
           className='menu-items'
           style={{ cursor: 'pointer' }} 
           onClick={() => {
             handleFolderClick("All Tasks")
+            setTitle("All"); // Click to show all tasks
             showAllTasks();
           } 
         } // Click to show all tasks
         >
           all ({tasks.length})
-        </small> <br/>
+        </small>   
         <small 
           className='menu-items' 
           onClick={ () => {
             toggleFavorites();
-            setTitle("Primary Tasks:"); // Click to toggle favorites
+            setTitle("Primary"); // Click to toggle favorites
           }
         }
           style={{ cursor: 'pointer' }} 
         >
           Primary ({favorites.length})
-        </small> <br/>
-        <small className='menu-items'>settings</small> <br/>
+        </small>
+        <small className='menu-items' >settings</small> <br/>
       </div>
     </div>
   );
