@@ -36,6 +36,7 @@
   align-self: center;
 }
 
+
 .modal-buttons {
   display: flex;
   justify-content: center;
@@ -177,7 +178,8 @@ body {
 }
 
 .title {
-  min-width: 15vw;
+  min-width: 10vw;
+  margin-right: -5rem;
   color: rgb(246, 246, 246);
   font-size: 20px;
   align-items: center;

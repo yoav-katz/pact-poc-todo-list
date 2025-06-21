@@ -7,7 +7,7 @@ export const NavBar = ({ tasks, favorites, toggleFavorites, showAllTasks, setTit
   return (
     <div className='navbar'>
       <div className='logo-wrapper' style={{ display: 'flex', justifyContent: 'start' }}>
-        <small className='logo'><b>Check<small className="halfLogo" >List</small></b></small>
+        <small className='logo'><b>Tasks<small className="halfLogo" >Manager</small></b></small>
       </div>
       
       <div className='menu-items-wrapper' style={{ color: 'white', fontSize: '14px', width: '37rem', textAlign: 'left', alignItems: 'start' }}>

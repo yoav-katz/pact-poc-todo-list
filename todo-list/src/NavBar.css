@@ -36,14 +36,14 @@
 }
 
 .halfLogo {
-  color: rgb(91, 155, 234);
+  color: aliceblue;
   font-size: 25px;
   font-weight: bolder;
 }
 
 .logo {
   font-size: 25px;
-  color: aliceblue;
+  color: rgb(91, 155, 234);
   padding-inline-start: 5%;
   margin-bottom: 3%;
   text-align: left;

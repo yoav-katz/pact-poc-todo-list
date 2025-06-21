@@ -8,7 +8,7 @@ import TaskForm from './TaskForm';
 import { v4 as uuidv4 } from 'uuid';
 import dayjs from 'dayjs'; // Import dayjs
 
-export const DialogWrapper = ({ dialogType, isOpen, handleClose, confirmAction, dialogData, tasks, folders }) => {
+export const DialogWrapper = ({ dialogType, isOpen, handleClose, confirmAction, dialogData, tasks, folders, addTask }) => {
   const [folderText, setFolderText] = useState(""); // ✅ Capture folder name
   const [taskText, setTaskText] = useState(dialogData?.taskText || ""); // Initialize with dialogData
   const [folderValue, setFolder] = useState(dialogData?.currentList || ""); // Capture folder selection
@@ -167,19 +167,16 @@ export const DialogWrapper = ({ dialogType, isOpen, handleClose, confirmAction, 
         <>
           <DialogTitle sx={dialogStyles}><b>Create Task</b></DialogTitle>
           <DialogContent sx={{ ...dialogStyles, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <TaskForm 
-              taskText={taskText} 
-              setTaskText={setTaskText} 
-              folders={folders} 
-              folderValue={folderValue} 
-              setFolder={setFolder} 
-              dateValue={dateValue} 
-              setDate={setDate} 
-              addTask={(task) => {
-                confirmAction(task);
-                handleClose();
-              }}
-            />
+           <TaskForm 
+            taskText={taskText} 
+            setTaskText={setTaskText} 
+            folders={folders} 
+            folderValue={folderValue} 
+            setFolder={setFolder} 
+            dateValue={dateValue} 
+            setDate={setDate} 
+            addTask={addTask}  // <-- use your real addTask function here
+          />
           </DialogContent>
           <DialogActions sx={dialogStyles}>
             <Button onClick={handleClose} sx={{  width: "8vw",borderRadius: '5px', color: 'rgb(116, 115, 115)', backgroundColor: 'rgba(93, 95, 97, 0)'  }}>Cancel</Button>
