@@ -1,7 +1,9 @@
 import { Router } from "express";
-import Task from './models/Task';
+import Task from '../models/task.js';
+import { ObjectId } from "mongodb";
+import mongoose from "mongoose";
 
-// POST /tasks
+// POST /task
 const tasksRouter = new Router();
 
 tasksRouter.post("/", async (req, res) => {
@@ -13,13 +15,16 @@ tasksRouter.post("/", async (req, res) => {
 
     res.status(201).json(task);
   } catch (error) {
-    console.error("Error saving task:", error);
-    res.status(500).json({ error: error.message });
+    if (error instanceof mongoose.Error.ValidationError) {
+      res.status(400).json({error: "Bad Format", body: req.body});
+    } else {
+      res.status(500).json({ error: error.message });
+    }
   }
 });
 
-// GET /tasks
-tasksRouter.get("/tasks", async (req, res) => {
+// GET /task
+tasksRouter.get("/", async (req, res) => {
   try {
     const tasks = await Task.find();
     res.json(tasks);
@@ -32,7 +37,8 @@ tasksRouter.get("/tasks", async (req, res) => {
 // PATCH /:id
 tasksRouter.patch("/:id", async (req, res) => {
   try {
-    const task = await Task.findOne({ _id: req.params.id });
+
+    const task = await Task.findOne({ _id: ObjectId.createFromHexString(req.params.id) });
     if (!task) return res.status(404).json({ message: "Task not found" });
 
     Object.assign(task, req.body);
@@ -49,8 +55,8 @@ tasksRouter.patch("/:id", async (req, res) => {
 tasksRouter.delete("/:id", async (req, res) => {
   try {
     // Ensure the task belongs to the user before deleting
-    const task = await task.findOneAndDelete({ _id: req.params.id });
-    if (!task) return res.status(404).json({ message: "Task not found or unauthorized" });
+    const task = await Task.findOneAndDelete({ _id: ObjectId.createFromHexString(req.params.id) });
+    if (!task) return res.status(404).json({ message: "Task not found" });
 
     res.json({ message: "Task deleted", task });
   } catch (error) {

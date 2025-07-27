@@ -1,0 +1,219 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Task API",
+    "version": "1.0.0",
+    "description": "API for creating, retrieving, updating, and deleting tasks."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/task": {
+      "post": {
+        "summary": "Create a new task",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Task to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskInput",
+              "example": {
+                "message": "Buy groceries and fruits",
+                "isFavorite": false,
+                "dueDate": "2025-08-01"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Task created successfully",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Bad format"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get tasks with filters",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string",
+            "description": "Filter tasks by ID",
+            "required": false
+          },
+          {
+            "name": "message",
+            "in": "query",
+            "type": "string",
+            "description": "Filter tasks by message content",
+            "required": false
+          },
+          {
+            "name": "isFavorite",
+            "in": "query",
+            "type": "boolean",
+            "description": "Filter tasks by favorite status",
+            "required": false
+          },
+          {
+            "name": "dueDate",
+            "in": "query",
+            "type": "string",
+            "format": "date",
+            "description": "Filter tasks by due date",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tasks",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch tasks"
+          }
+        }
+      }
+    },
+    "/task/{id}": {
+      "patch": {
+        "summary": "Update a task by ID",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "ID of the task to update",
+            "x-example": "68864fe3572ae75bb00b1c33"
+          },
+          {
+            "in": "body",
+            "name": "task",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task updated successfully",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "404": {
+            "description": "Task not found"
+          },
+          "500": {
+            "description": "Failed to update task"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a task by ID",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "ID of the task to delete",
+            "x-example": "68864fe3572ae75bb00b1c33"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task deleted successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "task": {
+                  "$ref": "#/definitions/Task"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found"
+          },
+          "500": {
+            "description": "Failed to delete task"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Task": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "isFavorite": {
+          "type": "boolean"
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "example": {
+        "id": "688646854e0ce972d6b4d01c",
+        "message": "Buy groceries and fruits",
+        "isFavorite": false,
+        "dueDate": "2025-08-01"
+      }
+    },
+    "TaskInput": {
+      "type": "object",
+      "required": ["message"],
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "isFavorite": {
+          "type": "boolean"
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "example": {
+        "message": "Buy groceries and fruits",
+        "isFavorite": false,
+        "dueDate": "2025-08-01T00:00:00.000Z"
+      }
+    }
+  }
+}

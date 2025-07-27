@@ -1,11 +1,17 @@
 import { Schema, model } from 'mongoose';
 
 const taskSchema = new Schema({
-  taskText: { type: String, required: true },
+  message: { type: String, required: true },
   isFavorite: { type: Boolean, default: false },
-  currentList: { type: String, default: "General" },
-  dueDate: { type: Date } //TODO: date
-});
+  dueDate: { type: Date }
+}, { versionKey: false, 
+     toJSON: {
+        transform(doc, ret, options) {
+            ret.id = ret._id;
+            delete ret._id;
+        },
+     }
+  });
 
 const taskModel = model("Task", taskSchema);
 
